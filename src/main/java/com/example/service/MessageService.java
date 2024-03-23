@@ -48,6 +48,7 @@ public class MessageService {
         return messageOptional.orElse(null);
     }
 
+    @Transactional
     public Integer deleteMessageById(int id){
         Optional<Message> messageOptional = messageRepository.findById(id);
         if(messageOptional.isPresent()){
@@ -58,6 +59,7 @@ public class MessageService {
         }
     }
 
+    @Transactional
     public Integer updateMessageById(int id, Message message){
         Message oldMessage = findMessageById(id);
         if(oldMessage != null && isMessageTextSatisfactory(message)){

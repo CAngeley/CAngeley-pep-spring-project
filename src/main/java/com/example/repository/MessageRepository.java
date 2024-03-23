@@ -16,12 +16,10 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
     public Optional<Message> findById(int id);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
-    @Transactional
     @Query("DELETE FROM Message m WHERE m.message_id = ?1")
     public void deleteById(int id);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
-    @Transactional
     @Query("UPDATE Message m SET m.message_text = ?2 WHERE message_id = ?1")
     public void updateMessageById(int id, String text);
 
